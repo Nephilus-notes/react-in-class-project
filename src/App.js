@@ -5,6 +5,7 @@ import Counter from './components/Counter'
 import Students from './components/Students'
 import About from './components/About'
 import Contact from './components/Contact'
+import Pokemon from './components/pokemon';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <li><Link to='/students'>Students</Link></li>
           <li><Link to="/about">About</Link></li>
           <li><Link to='/contact'>Contact</Link></li>
+          <li><Link to='/pokemon'>pokemon</Link></li>
         </ul>
       </nav>
       <Routes>
@@ -27,6 +29,7 @@ function App() {
         <Route path='/students' element={ <Students/> } />
         <Route path='/about' element= { <About/> }/>
         <Route path='/contact' element={ <Contact/> } />
+        <Route path='/pokemon' element={ <Pokemon/> } />
       </Routes>
       </BrowserRouter>
     </div>

@@ -1,9 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Counter(props) {
-    // let [count, setCount ] = useState(props.default ? props.default : 0)
-    // let [count, setCount ] = useState(props.default || 0)
-    let [count, setCount ] = useState(props.defaultStart ?? 0)
+    const [count, setCount ] = useState(props.defaultStart ?? 0)
+
+  
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //   setCount(count + 1)
+  // }, 1000)
+  // }, [count])
+
     let name = props['name'] ?? "Default Counter"
 
     console.log('componenet running')
