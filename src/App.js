@@ -5,7 +5,9 @@ import Counter from './components/Counter'
 import Students from './components/Students'
 import About from './components/About'
 import Contact from './components/Contact'
-import Pokemon from './components/pokemon';
+import Pokemon from './components/Pokemon';
+import Blog from './views/Blog';
+import BlogSingle from './views/BlogSingle'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 function App() {
@@ -21,6 +23,7 @@ function App() {
           <li><Link to="/about">About</Link></li>
           <li><Link to='/contact'>Contact</Link></li>
           <li><Link to='/pokemon'>pokemon</Link></li>
+          <li><Link to='/blog'>Blog</Link></li>
         </ul>
       </nav>
       <Routes>
@@ -30,6 +33,12 @@ function App() {
         <Route path='/about' element= { <About/> }/>
         <Route path='/contact' element={ <Contact/> } />
         <Route path='/pokemon' element={ <Pokemon/> } />
+        {/* <Route path='/blog' element={ <Blog/> } /> */}
+        {/* nested Routes */}
+        <Route path='/blog'>
+          <Route path=":id" element= { <BlogSingle/>} />
+          <Route path="" element={ <Blog/>}/>
+        </Route>
       </Routes>
       </BrowserRouter>
     </div>

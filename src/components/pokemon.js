@@ -1,74 +1,68 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react'
 
 export default function Pokemon() {
     const [pokemon, setPokemon] = useState({})
     // const [pokemonId, setPokemonId] = useState(1)
-    const [pokemonQuery, setPokemonQuery] = useState({
-        id:1,
-        query:''
-    })
-    const [loadState, setLoatState] = useState("LOADING")
+    // const [pokemonQuery, setPokemonQuery] = useState("pikachu")
+    const [loadState, setLoadState] = useState("LOADING")
+    
+    async function fetchPokemon(parameter) {
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${parameter}`)
+        const data = await response.json()
+        console.log("API REQUEST")
+        // setPokemonId(data.id)
+        setPokemon(data)
+        // setPokemonQuery("")
+        setLoadState("LOADED")
+    }
 
     useEffect(() => {
-        async function fetchPokemon() {
-            let parameter = pokemonQuery.id
-
-            if (pokemon.id == pokemonQuery.id){
-                parameter = pokemonQuery.query
-            }
-
-
-            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${ parameter }`)
-            const data = await response.json()
-            setPokemonQuery({
-                id: data.id,
-                query: pokemonQuery.query
-            })
-            setPokemon(data)
-            setLoatState("LOADED")
-        }
-
-        fetchPokemon()
-    },[pokemonQuery])
+            fetchPokemon(1)
+    }, [])
 
     function searchPokemon(event) {
         event.preventDefault()
         const formData = new FormData(event.target)
+         if (formData) {
         console.log(formData.get('pokemonName'))
 
-        setPokemonQuery(formData.get('pokemonName'))
+        fetchPokemon(formData.get('pokemonName'))
+
         event.target.reset()
+         }
+
     }
 
     return (
-        <div className="pokemon">
-                <h1>Pokemon</h1>
-                <p>Showing Pokemon ID: { pokemonQuery.id }</p>
-                <form onSubmit= { searchPokemon}>
-                <input type="text" name="pokemonName"/>
+        <div className='pokemon'>
+            <h1>Pokemon</h1>
+            <p>Showing pokemon ID: { pokemon.id }</p>
+            <form onSubmit={searchPokemon}>
+                <input type="text" name="pokemonName" />
                 <button>Search</button>
-                </form>
-
+            </form>
             {
-                (loadState === "LOADED") ?
+                (loadState === 'LOADED') ?
                 <>
-                <img src={ pokemon.sprites.front_shiny || pokemon.sprites.front_default} alt="" />
-            <h2>{ pokemon.name }</h2>
-        <p>Height: { pokemon.height }</p>
-        <p>Weight: { pokemon.weight }</p>
-        <p></p>
+                    <img src={ pokemon.sprites.front_default } alt="" />
+                    <h2>{ pokemon.name }</h2>
+                    <p>Height: { pokemon.height }</p>
+                    <p>Weight: { pokemon.weight }</p>    
                 </> :
-                <p>loading... </p>
+                <p>Loading...</p>
             }
-            
-            <button onClick={() => setPokemonQuery(pokemonQuery.id + 1) }>Next Pokemon</button>
             {
-                (pokemonQuery.id > 1) ?
-                <button onClick={() => setPokemonQuery(pokemonQuery.id - 1) }>Previous Pokemon</button> :
-                <></>
+                (pokemon.id > 1) ?
+                <button onClick={() => {
+                    pokemon.id--
+                    fetchPokemon(pokemon.id)
+                }}>Previous Pokemon</button>
+                : <></>
             }
-     
-
+            <button onClick={() => {
+                    pokemon.id++
+                    fetchPokemon(pokemon.id)
+            }}>Next Pokemon</button>
         </div>
     )
 }
