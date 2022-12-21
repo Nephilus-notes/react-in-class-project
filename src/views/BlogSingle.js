@@ -7,7 +7,7 @@ import { DataContext } from '../contexts/dataProvider';
 export default function BlogSingle() {
     const[post, setPost] = useState({})
     const { id } = useParams()
-    const{ getPost } = useContext(DataContext)
+    const{ loadPost } = useContext(DataContext)
 
     /*
     * Take the id from useParams
@@ -20,17 +20,16 @@ export default function BlogSingle() {
     * 
     */
     useEffect(() => {
-        async function handleGetPost() {
-            const data = await getPost(id)
+        async function handleloadPost() {
+            const data = await loadPost(id)
             setPost(data)
         }
     
-        handleGetPost()
-        },[getPost, id])
+        handleloadPost()
+        },[loadPost, id])
 
     return (
         <div className="post">
-            Post Single: {post.id}
             <Post post={post} /> 
         </div>
     )
