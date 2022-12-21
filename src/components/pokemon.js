@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { DataContext } from '../contexts/dataProvider';
+
 
 export default function Pokemon() {
     const [pokemon, setPokemon] = useState({})
-    // const [pokemonId, setPokemonId] = useState(1)
-    // const [pokemonQuery, setPokemonQuery] = useState("pikachu")
     const [loadState, setLoadState] = useState("LOADING")
+    const { fetchPokemon } = useContext(DataContext)
     
-    async function fetchPokemon(parameter) {
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${parameter}`)
-        const data = await response.json()
+    async function handleFetchPokemon(parameter) {
+        const data = await fetchPokemon(parameter)
         console.log("API REQUEST")
         // setPokemonId(data.id)
         setPokemon(data)
@@ -17,7 +17,7 @@ export default function Pokemon() {
     }
 
     useEffect(() => {
-            fetchPokemon(1)
+            handleFetchPokemon(1)
     }, [])
 
     function searchPokemon(event) {
@@ -26,7 +26,7 @@ export default function Pokemon() {
          if (formData) {
         console.log(formData.get('pokemonName'))
 
-        fetchPokemon(formData.get('pokemonName'))
+        handleFetchPokemon(formData.get('pokemonName'))
 
         event.target.reset()
          }
@@ -55,13 +55,13 @@ export default function Pokemon() {
                 (pokemon.id > 1) ?
                 <button onClick={() => {
                     pokemon.id--
-                    fetchPokemon(pokemon.id)
+                    handleFetchPokemon(pokemon.id)
                 }}>Previous Pokemon</button>
                 : <></>
             }
             <button onClick={() => {
                     pokemon.id++
-                    fetchPokemon(pokemon.id)
+                    handleFetchPokemon(pokemon.id)
             }}>Next Pokemon</button>
         </div>
     )

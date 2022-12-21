@@ -1,10 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'
 import Post from '../components/Post'
+import { DataContext } from '../contexts/dataProvider';
+
 
 export default function BlogSingle() {
     const[post, setPost] = useState({})
     const { id } = useParams()
+    const{ getPost } = useContext(DataContext)
 
     /*
     * Take the id from useParams
@@ -17,20 +20,18 @@ export default function BlogSingle() {
     * 
     */
     useEffect(() => {
-        async function getPost(){
-            const response = await fetch(`https://chief-flat-goose.glitch.me/api/post/${id}`)
-            const data = await response.json()
+        async function handleGetPost() {
+            const data = await getPost(id)
             setPost(data)
-            console.log(data)
         }
     
-        getPost()
-        },[id])
+        handleGetPost()
+        },[getPost, id])
 
     return (
         <div className="post">
             Post Single: {post.id}
-            <Post key={post.id} post={post} /> 
+            <Post post={post} /> 
         </div>
     )
-}
+    }
