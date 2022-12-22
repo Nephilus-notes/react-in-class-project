@@ -5,7 +5,7 @@ import Counter from './components/Counter'
 import Students from './components/Students'
 import About from './components/About'
 import Contact from './components/Contact'
-import Pokemon from './components/Pokemon';
+// import Pokemon from './components/Pokemon';
 import Blog from './views/Blog';
 import BlogSingle from './views/BlogSingle'
 import { AuthContext } from './contexts/AuthProvider';
