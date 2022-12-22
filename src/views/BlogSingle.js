@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'
 import Post from '../components/Post'
-import { DataContext } from '../contexts/dataProvider';
+import { DataContext } from '../contexts/DataProvider';
 
 
 export default function BlogSingle() {

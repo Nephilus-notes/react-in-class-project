@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { DataContext } from '../contexts/dataProvider';
+import { DataContext } from '../contexts/DataProvider';
 import Post from '../components/Post'
 import { AuthContext } from '../contexts/AuthProvider';
 
