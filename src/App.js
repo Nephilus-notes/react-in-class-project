@@ -5,7 +5,7 @@ import Counter from './components/Counter'
 import Students from './components/Students'
 import About from './components/About'
 import Contact from './components/Contact'
-// import Pokemon from './components/Pokemon';
+import Pokemon from './components/Pokemon';
 import Blog from './views/Blog';
 import BlogSingle from './views/BlogSingle'
 import { AuthContext } from './contexts/AuthProvider';
@@ -24,7 +24,7 @@ function App() {
           <li><Link to='/students'>Students</Link></li>
           <li><Link to="/about">About</Link></li>
           <li><Link to='/contact'>Contact</Link></li>
-          {/* <li><Link to='/pokemon'>pokemon</Link></li> */}
+          <li><Link to='/pokemon'>pokemon</Link></li>
           <li><Link to='/blog'>Blog</Link></li>
           {
             (user.loggedIn) ?
@@ -39,7 +39,7 @@ function App() {
         <Route path='/students' element={ <Students/> } />
         <Route path='/about' element= { <About/> }/>
         <Route path='/contact' element={ <Contact/> } />
-        {/* <Route path='/pokemon' element={ <Pokemon/> } /> */}
+        <Route path='/pokemon' element={ <Pokemon/> } />
         {/* <Route path='/blog' element={ <Blog/> } /> */}
         {/* nested Routes */}
         <Route path='/blog'>
