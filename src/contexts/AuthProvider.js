@@ -23,7 +23,7 @@ const [user, setUser] = useState({
 
     useEffect(() => {
         onAuthStateChanged(auth, (userInfo) => {
-            console.log(userInfo)
+            // console.log(userInfo)
         if (userInfo) {
             setUser({
                 email: userInfo.email,
@@ -36,7 +36,7 @@ const [user, setUser] = useState({
                 loggedIn: false
             })
         }
-        console.log(userInfo)})
+        })
     }, [])
 
     const value = {

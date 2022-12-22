@@ -43,7 +43,9 @@ function App() {
         {/* <Route path='/blog' element={ <Blog/> } /> */}
         {/* nested Routes */}
         <Route path='/blog'>
-          <Route path=":id" element= { <BlogSingle/>} />
+          <Route path=":uid">
+            <Route path=":id" element= { <BlogSingle/>} />
+          </Route>
           <Route path="" element={ <Blog/>}/>
         </Route>
       </Routes>
