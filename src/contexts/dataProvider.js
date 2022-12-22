@@ -10,11 +10,11 @@ export const DataProvider = function (props) {
 
     useEffect(() => {
         async function getPosts(){
-            // const querySnapshot = await getDocs(collection(db, 'posts'))
-            // // setPosts(data)
+            const querySnapshot = await getDocs(collection(db, 'posts'))
+            // setPosts(data)
             const postDocs = []
-            const q = query(collection(db, 'posts'), orderBy('date_created', 'desc'))
-            const querySnapshot = await getDocs(q)
+            // const q = query(collection(db, 'posts'), orderBy('date_created', 'desc'))
+            // const querySnapshot = await getDocs(q)
 
             querySnapshot.forEach((doc) => {
                 postDocs.push({

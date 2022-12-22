@@ -19,6 +19,7 @@ export default function BlogSingle() {
     * Use that to put post data on the page
     * 
     */
+    
     useEffect(() => {
         async function handleloadPost() {
             const data = await loadPost(id)
