@@ -1,9 +1,11 @@
 import { useState, useEffect, useContext } from 'react';
 import { DataContext } from '../contexts/dataProvider';
 import Post from '../components/Post'
+import { AuthContext } from '../contexts/AuthProvider';
 
 export default function Blog() {
     const { posts, addPost } = useContext(DataContext)
+    const { user } = useContext(AuthContext)
 
     function handleSubmit(event) {
         event.preventDefault()
@@ -15,13 +17,16 @@ export default function Blog() {
     return  (
         <div className="posts">
             <h1>Blog</h1>
+           { (user.loggedIn) ? <></>:<></> }
+
 <form onSubmit={handleSubmit}>
     <input type="text" name="title" placeholder="title" />
     <input type="text" name="body" placeholder="body" />
     <button>Add Post</button>
 </form>
 
-            { posts.map(post => <Post key={post.id} post={post} showLink='true' /> )}
+            { posts.map(post => <Post key={post.id} post={post} showLink='true' /> )} :
+
         </div>
     )
 }
