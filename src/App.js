@@ -24,7 +24,7 @@ function App() {
           <li><Link to='/students'>Students</Link></li>
           <li><Link to="/about">About</Link></li>
           <li><Link to='/contact'>Contact</Link></li>
-          <li><Link to='/pokemon'>pokemon</Link></li>
+          {/* <li><Link to='/pokemon'>pokemon</Link></li> */}
           <li><Link to='/blog'>Blog</Link></li>
           {
             (user.loggedIn) ?
@@ -39,7 +39,7 @@ function App() {
         <Route path='/students' element={ <Students/> } />
         <Route path='/about' element= { <About/> }/>
         <Route path='/contact' element={ <Contact/> } />
-        <Route path='/pokemon' element={ <Pokemon/> } />
+        {/* <Route path='/pokemon' element={ <Pokemon/> } /> */}
         {/* <Route path='/blog' element={ <Blog/> } /> */}
         {/* nested Routes */}
         <Route path='/blog'>
